@@ -16,7 +16,7 @@ def rating_by_project(project_name):
                     + dict_project[2] * 2 + dict_project[1]
     grade_project = float(grade_project) / sum(dict_project.values())
     # print dict_project
-    print "Your grade as a Project Reviewer of %s is: %.2f" % (
+    print "    - %s is: %.2f" % (
         project_name, round(grade_project, 2))
 
 
@@ -73,5 +73,6 @@ for project in certification:
     if project["status"] == "certified":
         project_list.append(project["project"]["name"])
 
+print "Your grade as a Project Reviewer of:"
 for project in project_list:
     rating_by_project(project)
