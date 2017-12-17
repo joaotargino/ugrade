@@ -22,8 +22,12 @@ def rating_by_project(project_name):
 
 try:
     TOKEN = str(sys.argv[1])
-except:
-    TOKEN = ''
+except IndexError:
+    TOKEN = "replace"
+    if TOKEN == "replace":
+        print "please insert your token above or as parameter:"
+        print "use the command:$    python calc_rating.py your_token"
+        sys.exit()
 
 headers = {'Authorization': TOKEN, 'Content-Length': '0'}
 
