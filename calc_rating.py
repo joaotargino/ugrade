@@ -2,7 +2,7 @@
 
 import requests
 import sys
-import json
+# import json
 
 
 def rating_by_project(project_name):
@@ -48,6 +48,14 @@ headers = {'Authorization': TOKEN, 'Content-Length': '0'}
 # change if started before, adjust to see month by month)
 start_date = "2001-01-28"
 end_date = "2042-01-28"
+
+q = "N"
+q = raw_input('Want to filter by date? (y/N) ')
+
+if q.upper() != "N" and q != "":
+    start_date = raw_input('Enter the start date (yyyy-mm-dd):')
+    end_date = raw_input('Enter the end date (yyyy-mm-dd):')
+
 
 STUDENTS_FEEDBACK_URL_ALL = \
     'https://review-api.udacity.com/api/v1/me/' \
