@@ -6,18 +6,18 @@ import json
 
 
 def rating_by_project(project_name):
-    for feedback in feedback_history:
-        dict_ratings[feedback["rating"]] += 1
-        if feedback["project"]["name"] == project_name:
-            dict_project[feedback["rating"]] += 1
+    for student_feedback in feedback_history:
+        dict_ratings[student_feedback["rating"]] += 1
+        if student_feedback["project"]["name"] == project_name:
+            dict_project[student_feedback["rating"]] += 1
 
     grade_project = dict_project[5] * 5 + dict_project[4] * 4 + dict_project[
-        3] * 3 \
-                    + dict_project[2] * 2 + dict_project[1]
-    grade_project = float(grade_project) / sum(dict_project.values())
-    # print dict_project
-    print "    - %s is: %.2f" % (
-        project_name, round(grade_project, 2))
+        3] * 3 + dict_project[2] * 2 + dict_project[1]
+    if sum(dict_project.values()) > 0:
+        grade_project = float(grade_project) / sum(dict_project.values())
+        # print dict_project
+        print "    - %s is: %.2f" % (
+            project_name, round(grade_project, 2))
 
 
 try:
@@ -33,9 +33,12 @@ headers = {'Authorization': TOKEN, 'Content-Length': '0'}
 
 # start_date 2016 jan 01(works if you started later,
 # change if started before, adjust to see month by month)
+start_date = "2001-01-28"
+end_date = "2042-01-28"
+
 STUDENTS_FEEDBACK_URL_ALL = \
     'https://review-api.udacity.com/api/v1/me/' \
-    'student_feedbacks?start_date=2016-01-01'
+    'student_feedbacks?start_date=%s&end_date=%s' % (start_date, end_date)
 
 print "Calculating..."
 # print "\n=================================="
@@ -56,7 +59,6 @@ certification = certification.json()
 print "=================================="
 
 dict_ratings = {5: 0, 4: 0, 3: 0, 2: 0, 1: 0}
-dict_project = {5: 0, 4: 0, 3: 0, 2: 0, 1: 0}
 
 for feedback in feedback_history:
     dict_ratings[feedback["rating"]] += 1
@@ -79,4 +81,5 @@ for project in certification:
 
 print "Your grade as a Project Reviewer of:"
 for project in project_list:
+    dict_project = {5: 0, 4: 0, 3: 0, 2: 0, 1: 0}
     rating_by_project(project)
