@@ -13,11 +13,24 @@ def rating_by_project(project_name):
 
     grade_project = dict_project[5] * 5 + dict_project[4] * 4 + dict_project[
         3] * 3 + dict_project[2] * 2 + dict_project[1]
-    if sum(dict_project.values()) > 0:
+    total_feedback_by_project = sum(dict_project.values())
+    if total_feedback_by_project > 0:
         grade_project = float(grade_project) / sum(dict_project.values())
         # print dict_project
-        print "    - %s is: %.2f" % (
-            project_name, round(grade_project, 2))
+        print "    - %s is: %s in a total of %d ratings" % (
+            project_name, getColor(round(grade_project, 2)),
+            total_feedback_by_project)
+
+
+def getColor(grade):
+    BLACK, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN, WHITE = range(8)
+    if grade <= 3.0:
+        color = RED
+    elif grade <= 4.20:
+        color = BLUE
+    else:
+        color = GREEN
+    return "\x1b[1;%dm" % (30 + color) + "%.2f" % grade + "\x1b[0m"
 
 
 try:
@@ -56,7 +69,7 @@ certification = requests.get(CERTIFICATIONS_URL, headers=headers)
 #                                    indent=4, sort_keys=True)
 certification = certification.json()
 
-print "=================================="
+# print "=================================="
 
 dict_ratings = {5: 0, 4: 0, 3: 0, 2: 0, 1: 0}
 
@@ -71,8 +84,8 @@ grade = dict_ratings[5] * 5 + dict_ratings[4] * 4 + dict_ratings[3] * 3 \
 grade = float(grade) / len(feedback_history)
 
 # round to 2 decimals, uncoment last line to see full
-print "Your grade as a Project Reviewer is: %.2f" % round(grade, 2)
-print grade
+print "Your grade as a Project Reviewer is: %s" % getColor(round(grade, 2))
+# print grade
 
 project_list = []
 for project in certification:
