@@ -18,19 +18,19 @@ def rating_by_project(project_name):
         grade_project = float(grade_project) / sum(dict_project.values())
         # print dict_project
         print "    - %s is: %s in a total of %d ratings" % (
-            project_name, getColor(round(grade_project, 2)),
+            project_name, get_color(round(grade_project, 2)),
             total_feedback_by_project)
 
 
-def getColor(grade):
-    BLACK, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN, WHITE = range(8)
-    if grade <= 3.0:
-        color = RED
+def get_color(current_grade):
+    black, red, green, yellow, blue, magenta, cyan, white = range(8)
+    if current_grade <= 3.0:
+        color = red
     elif grade <= 4.20:
-        color = BLUE
+        color = blue
     else:
-        color = GREEN
-    return "\x1b[1;%dm" % (30 + color) + "%.2f" % grade + "\x1b[0m"
+        color = green
+    return "\x1b[1;%dm" % (30 + color) + "%.2f" % current_grade + "\x1b[0m"
 
 
 try:
@@ -84,7 +84,7 @@ grade = dict_ratings[5] * 5 + dict_ratings[4] * 4 + dict_ratings[3] * 3 \
 grade = float(grade) / len(feedback_history)
 
 # round to 2 decimals, uncoment last line to see full
-print "Your grade as a Project Reviewer is: %s" % getColor(round(grade, 2))
+print "Your grade as a Project Reviewer is: %s" % get_color(round(grade, 2))
 # print grade
 
 project_list = []
