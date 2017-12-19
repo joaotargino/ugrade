@@ -39,8 +39,8 @@ def get_total_reviews(submissions):
     return d_submissions
 
 
-def calc_percentage(feedback_project, total_reviews):
-    return str(feedback_project * 100 / total_reviews)
+def calc_percentage(feedback_project, total_n_reviews):
+    return "%.2f" % float(feedback_project * 100 / float(total_n_reviews))
 
 
 def get_color(current_grade):
