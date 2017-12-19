@@ -72,12 +72,11 @@ headers = {'Authorization': TOKEN, 'Content-Length': '0'}
 start_date = "2001-01-28"
 end_date = "2042-01-28"
 
-q = "N"
 q = raw_input('Want to filter by date? (y/N) ')
 
 if q.upper() != "N" and q != "":
-    start_date = raw_input('Enter the start date (yyyy-mm-dd):')
-    end_date = raw_input('Enter the end date (yyyy-mm-dd):')
+    start_date = raw_input('Enter the start date (yyyy-mm-dd): ')
+    end_date = raw_input('Enter the end date (yyyy-mm-dd): ')
 
 STUDENTS_FEEDBACK_URL_ALL = \
     'https://review-api.udacity.com/api/v1/me/' \
@@ -109,7 +108,7 @@ submissions_completed = submissions_completed.json()
 
 dict_submissions = get_total_reviews(submissions_completed)
 
-dict_ratings = {5: 0, 4: 0, 3: 0, 2: 0, 1: 0}
+dict_ratings = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0}
 
 for feedback in feedback_history:
     dict_ratings[feedback["rating"]] += 1
@@ -119,7 +118,11 @@ print "Number of ratings: %d out of %s reviews " \
       "(%s%% feedback) " % (len(feedback_history), total_reviews,
                             calc_percentage(
                                 len(feedback_history), total_reviews))
-print dict_ratings
+# print dict_ratings
+for g in dict_ratings:
+    print "%s stars received: %s (%s%%)" % (str(g), str(dict_ratings[g]),
+                                            calc_percentage(dict_ratings[g],
+                                                            total_reviews))
 
 grade = dict_ratings[5] * 5 + dict_ratings[4] * 4 + dict_ratings[3] * 3 \
         + dict_ratings[2] * 2 + dict_ratings[1]
