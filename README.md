@@ -17,14 +17,11 @@ Your grade as a Project Reviewer is: 4.90
 
 Your grade as a Project Reviewer of:
 
-{1: 0, 2: 0, 3: 2, 4: 5, 5: 22}
     
-        - Tour Guide App is: 4.89 in a total of 29 ratings out of XX reviews (YY.YY% feedback)
+    - Tour Guide App is: 4.89 in a total of 29 ratings out of XX reviews (YY.YY% feedback)
 
-{1: 3, 2: 3, 3: 8, 4: 30, 5: 500}
 
     - Capstone, Stage 1 -  Design is: 4.99 in a total of 640 ratings out of XX reviews (YY.YY% feedback)
 
-{1: 3, 2: 1, 3: 1, 4: 14, 5: 420}
 
     - Popular Movies, Stage 1 is: 4.94 in a total of 544 ratings out of XX reviews (YY.YY% feedback)
