@@ -1,3 +1,8 @@
+# how to run
+use the command:
+$    python calc_rating.py your_token
+
+
 # expected output (example)
 
 Number of ratings: 1500 out of 2000 reviews (75% feedback)
